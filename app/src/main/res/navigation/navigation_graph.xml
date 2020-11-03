@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_graph"
-    app:startDestination="@id/startFragment">
+    app:startDestination="@id/mainFragment">
 
     <fragment
         android:id="@+id/startFragment"
@@ -14,6 +14,7 @@
             android:id="@+id/action_startFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/addNewNoteFragment"
         android:name="ru.mvlikhachev.notesmvvm.screens.AddNewNoteFragment"
@@ -23,6 +24,7 @@
             android:id="@+id/action_addNewNoteFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/noteFragment"
         android:name="ru.mvlikhachev.notesmvvm.screens.NoteFragment"
