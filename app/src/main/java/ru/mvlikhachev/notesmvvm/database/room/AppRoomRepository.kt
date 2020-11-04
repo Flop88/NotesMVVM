@@ -1,0 +1,21 @@
+package ru.mvlikhachev.notesmvvm.database.room
+
+import androidx.lifecycle.LiveData
+import ru.mvlikhachev.notesmvvm.database.DatabaseRepository
+import ru.mvlikhachev.notesmvvm.model.AppNote
+
+class AppRoomRepository(private val appRoomDao: AppRoomDao) : DatabaseRepository {
+
+
+
+    override val allNotes: LiveData<List<AppNote>>
+        get() = appRoomDao.getAllNotes()
+
+    override suspend fun insert(note: AppNote, onSuccess: () -> Unit) {
+        appRoomDao.insert(note)
+    }
+
+    override suspend fun delete(note: AppNote, onSuccess: () -> Unit) {
+        appRoomDao.delete(note)
+    }
+}
