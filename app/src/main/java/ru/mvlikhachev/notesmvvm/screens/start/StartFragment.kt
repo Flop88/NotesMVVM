@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.fragment_start.*
 import ru.mvlikhachev.notesmvvm.R
 import ru.mvlikhachev.notesmvvm.databinding.FragmentStartBinding
+import ru.mvlikhachev.notesmvvm.utilits.APP_ACTIVITY
 import ru.mvlikhachev.notesmvvm.utilits.TYPE_ROOM
 
 
@@ -37,7 +38,9 @@ class StartFragment : Fragment() {
     private fun initialization() {
         mViewModel = ViewModelProvider(this).get(StartFragmentViewModel::class.java)
         btn_room.setOnClickListener {
-            mViewModel.initDataBase(TYPE_ROOM)
+            mViewModel.initDatabase(TYPE_ROOM){
+                APP_ACTIVITY.mNavController.navigate(R.id.action_startFragment_to_mainFragment)
+            }
         }
     }
 }
