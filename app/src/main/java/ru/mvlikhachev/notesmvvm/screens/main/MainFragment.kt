@@ -1,4 +1,4 @@
-package ru.mvlikhachev.notesmvvm.screens.start
+package ru.mvlikhachev.notesmvvm.screens.main
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,46 +6,44 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import kotlinx.android.synthetic.main.fragment_start.*
 import ru.mvlikhachev.notesmvvm.R
-import ru.mvlikhachev.notesmvvm.databinding.FragmentStartBinding
+import ru.mvlikhachev.notesmvvm.databinding.FragmentMainBinding
 import ru.mvlikhachev.notesmvvm.utilits.APP_ACTIVITY
-import ru.mvlikhachev.notesmvvm.utilits.TYPE_ROOM
 
 
-class StartFragment : Fragment() {
+class MainFragment : Fragment() {
 
-    private var _binding: FragmentStartBinding? = null
+    private var _binding : FragmentMainBinding? = null
     private val mBinding get() = _binding!!
 
-    private lateinit var mViewModel: StartFragmentViewModel
+    private lateinit var mViewModel : MainFragmentViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        _binding = FragmentStartBinding.inflate(layoutInflater, container, false)
         // Inflate the layout for this fragment
+        _binding = FragmentMainBinding.inflate(layoutInflater, container, false)
         return mBinding.root
     }
 
     override fun onStart() {
         super.onStart()
+
         initialization()
+
     }
 
     private fun initialization() {
-        mViewModel = ViewModelProvider(this).get(StartFragmentViewModel::class.java)
-        btn_room.setOnClickListener {
-            mViewModel.initDatabase(TYPE_ROOM){
-                APP_ACTIVITY.mNavController.navigate(R.id.action_startFragment_to_mainFragment)
-            }
+        mViewModel = ViewModelProvider(this).get(MainFragmentViewModel::class.java)
+        mBinding.addNoteButton.setOnClickListener {
+            APP_ACTIVITY.mNavController.navigate(R.id.action_mainFragment_to_addNewNoteFragment)
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
+
         _binding = null
     }
 }
