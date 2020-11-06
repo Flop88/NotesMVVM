@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.note_item.view.*
 import ru.mvlikhachev.notesmvvm.model.AppNote
+import ru.mvlikhachev.notesmvvm.screens.main.MainFragment
 
 class MainAdapter : RecyclerView.Adapter<MainAdapter.MainHolder>(){
 
@@ -41,4 +42,14 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.MainHolder>(){
        return mListNote.size
     }
 
+    override fun onViewAttachedToWindow(holder: MainHolder) {
+        holder.itemView.setOnClickListener {
+            MainFragment.click(mListNote[holder.adapterPosition])
+        }
+    }
+
+    override fun onViewDetachedFromWindow(holder: MainHolder) {
+        holder.itemView.setOnClickListener { null }
+        super.onViewDetachedFromWindow(holder)
+    }
 }

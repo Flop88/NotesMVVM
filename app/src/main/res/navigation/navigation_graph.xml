@@ -27,7 +27,7 @@
 
     <fragment
         android:id="@+id/noteFragment"
-        android:name="ru.mvlikhachev.notesmvvm.screens.NoteFragment"
+        android:name="ru.mvlikhachev.notesmvvm.screens.note.NoteFragment"
         android:label="fragment_note"
         tools:layout="@layout/fragment_note" >
         <action
