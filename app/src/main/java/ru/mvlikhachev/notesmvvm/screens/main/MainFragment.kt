@@ -6,11 +6,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
-import ru.mvlikhachev.notesmvvm.MainAdapter
 import ru.mvlikhachev.notesmvvm.R
 import ru.mvlikhachev.notesmvvm.databinding.FragmentMainBinding
 import ru.mvlikhachev.notesmvvm.model.AppNote
 import ru.mvlikhachev.notesmvvm.utilits.APP_ACTIVITY
+import ru.mvlikhachev.notesmvvm.utilits.AppPreference
 
 
 class MainFragment : Fragment() {
@@ -76,6 +76,7 @@ class MainFragment : Fragment() {
         when (item.itemId) {
             R.id.btn_exit -> {
                 mViewModel.signOut()
+                AppPreference.setInitUser(false)
                 APP_ACTIVITY.navController.navigate(R.id.action_mainFragment_to_startFragment)
             }
         }

@@ -3,15 +3,10 @@ package ru.mvlikhachev.notesmvvm.screens.note
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.RecyclerView
-import ru.mvlikhachev.notesmvvm.MainAdapter
 import ru.mvlikhachev.notesmvvm.R
-import ru.mvlikhachev.notesmvvm.databinding.FragmentMainBinding
 import ru.mvlikhachev.notesmvvm.databinding.FragmentNoteBinding
 import ru.mvlikhachev.notesmvvm.model.AppNote
-import ru.mvlikhachev.notesmvvm.screens.main.MainFragmentViewModel
 import ru.mvlikhachev.notesmvvm.utilits.APP_ACTIVITY
 
 

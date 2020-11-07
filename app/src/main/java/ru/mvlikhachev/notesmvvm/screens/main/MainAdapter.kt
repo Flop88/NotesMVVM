@@ -1,14 +1,13 @@
-package ru.mvlikhachev.notesmvvm
+package ru.mvlikhachev.notesmvvm.screens.main
 
 import android.view.LayoutInflater
-import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.note_item.view.*
+import ru.mvlikhachev.notesmvvm.R
 import ru.mvlikhachev.notesmvvm.model.AppNote
-import ru.mvlikhachev.notesmvvm.screens.main.MainFragment
 
 class MainAdapter : RecyclerView.Adapter<MainAdapter.MainHolder>(){
 
