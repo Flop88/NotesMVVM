@@ -2,16 +2,15 @@
 
 > В приложении вы выбираете где будут храниться все ваши данные - на сервере или в локальной БД
 
-**Архитектурные компоненты:**
-- LiveData;
-- ViewModel;
-- Room;
-- Navigation;
 
 **Стек технологий:**
 - Android SDK;
 - Kotlin;
-- Шаблон MVVM;
+- MVVM;
+- LiveData;
+- ViewModel;
+- Room (SQLite);
+- Navigation;
 - Kotlin Coroutines;
 - Firebase SDK;
 - RecyclerView.
