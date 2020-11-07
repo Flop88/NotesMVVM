@@ -8,3 +8,7 @@ lateinit var REPOSITORY: DatabaseRepository
 
 const val TYPE_DATABASE = "type database"
 const val TYPE_ROOM = "type room"
+
+const val TYPE_FIREBASE = "type firebase"
+lateinit var EMAIL: String
+lateinit var PASSWORD: String

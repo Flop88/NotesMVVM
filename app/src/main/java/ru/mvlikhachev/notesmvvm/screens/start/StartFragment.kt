@@ -9,8 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.fragment_start.*
 import ru.mvlikhachev.notesmvvm.R
 import ru.mvlikhachev.notesmvvm.databinding.FragmentStartBinding
-import ru.mvlikhachev.notesmvvm.utilits.APP_ACTIVITY
-import ru.mvlikhachev.notesmvvm.utilits.TYPE_ROOM
+import ru.mvlikhachev.notesmvvm.utilits.*
 
 
 class StartFragment : Fragment() {
@@ -37,9 +36,31 @@ class StartFragment : Fragment() {
 
     private fun initialization() {
         mViewModel = ViewModelProvider(this).get(StartFragmentViewModel::class.java)
-        btn_room.setOnClickListener {
+        mBinding.btnRoom.setOnClickListener {
             mViewModel.initDatabase(TYPE_ROOM){
                 APP_ACTIVITY.navController.navigate(R.id.action_startFragment_to_mainFragment)
+            }
+        }
+
+        mBinding.btnFirebase.setOnClickListener {
+            mBinding.inputEmailEditText.visibility = View.VISIBLE
+            mBinding.inputPasswordEditText.visibility = View.VISIBLE
+            mBinding.btnLogin.visibility = View.VISIBLE
+
+            mBinding.btnLogin.setOnClickListener {
+                val inputEmail = mBinding.inputEmailEditText.text.toString()
+                val inputPassword = mBinding.inputPasswordEditText.text.toString()
+
+                if (inputEmail.isNotEmpty() && inputPassword.isNotEmpty()) {
+                    EMAIL = inputEmail
+                    PASSWORD = inputPassword
+
+                    mViewModel.initDatabase(TYPE_FIREBASE){
+                        APP_ACTIVITY.navController.navigate(R.id.action_startFragment_to_mainFragment)
+                    }
+                } else {
+                    showToast(getString(R.string.toast_wrong_login_data))
+                }
             }
         }
     }
