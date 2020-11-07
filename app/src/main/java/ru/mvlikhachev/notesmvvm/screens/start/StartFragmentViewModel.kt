@@ -2,6 +2,7 @@ package ru.mvlikhachev.notesmvvm.screens.start
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import ru.mvlikhachev.notesmvvm.database.firebase.AppFirebaseRepository
 import ru.mvlikhachev.notesmvvm.database.room.AppRoomDatabase
 import ru.mvlikhachev.notesmvvm.database.room.AppRoomRepository
 import ru.mvlikhachev.notesmvvm.utilits.REPOSITORY
@@ -22,7 +23,8 @@ class StartFragmentViewModel(application: Application) : AndroidViewModel(applic
                 onSuccess()
             }
             TYPE_FIREBASE -> {
-                showToast(TYPE_FIREBASE)
+                REPOSITORY = AppFirebaseRepository()
+                REPOSITORY.connectToDatabase({onSuccess()}, { showToast("Failed authorization")})
             }
         }
 
