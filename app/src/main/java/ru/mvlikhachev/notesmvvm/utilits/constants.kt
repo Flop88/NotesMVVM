@@ -12,3 +12,7 @@ const val TYPE_ROOM = "type room"
 const val TYPE_FIREBASE = "type firebase"
 lateinit var EMAIL: String
 lateinit var PASSWORD: String
+
+const val ID_FIREBASE = "idFirebase"
+const val NAME = "name"
+const val TEXT = "text"
