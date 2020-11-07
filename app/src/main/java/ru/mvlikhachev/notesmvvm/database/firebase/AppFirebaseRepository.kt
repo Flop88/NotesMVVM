@@ -9,13 +9,11 @@ import ru.mvlikhachev.notesmvvm.utilits.*
 
 class AppFirebaseRepository : DatabaseRepository {
 
-
     init {
         AUTH = FirebaseAuth.getInstance()
     }
 
-    override val allNotes: LiveData<List<AppNote>> = AllNoteLiveData()
-
+    override val allNotes: LiveData<List<AppNote>> = AllNotesLiveData()
 
     override suspend fun insert(note: AppNote, onSuccess: () -> Unit) {
         val idNote = REF_DATABASE.push().key.toString()
@@ -36,17 +34,19 @@ class AppFirebaseRepository : DatabaseRepository {
             .addOnFailureListener { showToast(it.message.toString()) }
     }
 
-    override fun connectToDatabase(onSuccess: () -> Unit, onFail: () -> Unit) {
+    override fun connectToDatabase(onSuccess: () -> Unit, onFail: (String) -> Unit) {
         AUTH.signInWithEmailAndPassword(EMAIL, PASSWORD)
             .addOnSuccessListener { onSuccess() }
             .addOnFailureListener() {
                 AUTH.createUserWithEmailAndPassword(EMAIL, PASSWORD)
                     .addOnSuccessListener { onSuccess() }
-                    .addOnFailureListener { onFail() }
+                    .addOnFailureListener { onFail(it.message.toString()) }
             }
+
         CURRENT_ID = AUTH.currentUser?.uid.toString()
-       REF_DATABASE =  FirebaseDatabase.getInstance().reference
+        REF_DATABASE = FirebaseDatabase.getInstance().reference
             .child(CURRENT_ID)
+
     }
 
     override fun signOut() {

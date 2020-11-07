@@ -15,7 +15,6 @@ import ru.mvlikhachev.notesmvvm.utilits.showToast
 
 class AddNewNoteFragment : Fragment() {
 
-
     private var _binding: FragmentAddNewNoteBinding? = null
     private val mBinding get() = _binding!!
     private lateinit var mViewModel: AddNewNoteFragmentViewModel
@@ -38,10 +37,10 @@ class AddNewNoteFragment : Fragment() {
         mBinding.addNoteButton.setOnClickListener {
             val name = mBinding.inputNameNoteEditText.text.toString()
             val text = mBinding.inputTextNoteEditText.text.toString()
-            if (name.isEmpty()){
+            if (name.isEmpty()) {
                 showToast(getString(R.string.toast_enter_name))
             } else {
-                mViewModel.insert(AppNote(name = name,text = text)){
+                mViewModel.insert(AppNote(name = name, text = text)) {
                     APP_ACTIVITY.navController.navigate(R.id.action_addNewNoteFragment_to_mainFragment)
                 }
             }

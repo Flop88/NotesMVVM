@@ -12,7 +12,6 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var mToolbar: Toolbar
     lateinit var navController: NavController
-
     private var _binding: ActivityMainBinding? = null
     val mBinding get() = _binding!!
 
@@ -21,17 +20,14 @@ class MainActivity : AppCompatActivity() {
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
         APP_ACTIVITY = this
-
         mToolbar = mBinding.toolbar
         navController = Navigation.findNavController(this, R.id.navHostFragment)
         setSupportActionBar(mToolbar)
         title = getString(R.string.title)
-
     }
 
     override fun onDestroy() {
         super.onDestroy()
-
         _binding = null
     }
 }
