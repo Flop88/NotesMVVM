@@ -2,7 +2,6 @@ package ru.mvlikhachev.notesmvvm.database.firebase
 
 import androidx.lifecycle.LiveData
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.ktx.Firebase
 import ru.mvlikhachev.notesmvvm.database.DatabaseRepository
 import ru.mvlikhachev.notesmvvm.model.AppNote
 import ru.mvlikhachev.notesmvvm.utilits.EMAIL
@@ -12,8 +11,7 @@ class AppFirebaseRepository : DatabaseRepository {
 
     private val mAuth = FirebaseAuth.getInstance()
 
-    override val allNotes: LiveData<List<AppNote>>
-        get() = TODO("Not yet implemented")
+    override val allNotes: LiveData<List<AppNote>> = AllNoteLiveData()
 
     override suspend fun insert(note: AppNote, onSuccess: () -> Unit) {
         TODO("Not yet implemented")
@@ -29,7 +27,7 @@ class AppFirebaseRepository : DatabaseRepository {
             .addOnFailureListener() {
                 mAuth.createUserWithEmailAndPassword(EMAIL, PASSWORD)
                     .addOnSuccessListener { onSuccess() }
-                    .addOnFailureListener { onFail(it.message.toString()) }
+                    .addOnFailureListener { onFail() }
             }
     }
 
